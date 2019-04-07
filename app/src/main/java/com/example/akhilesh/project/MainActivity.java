@@ -13,27 +13,29 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editText;
     EditText editText2;
-    TextView textView;
-    Button button3;
+    TextView login_heading;
+    Button login_button;
+    TextView forget_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
 
-        button3 = findViewById (R.id.button3);
-        textView = findViewById (R.id.editText);
+        login_button = findViewById (R.id.loginButton);
+        login_heading = findViewById (R.id.Login_heading);
         editText = findViewById (R.id.editText);
         editText2 = findViewById (R.id.editText2);
+        forget_password = findViewById (R.id.Forget_password);
 
-        button3.setOnClickListener (new View.OnClickListener () {
+        login_button.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
                 Toast.makeText (MainActivity.this, "welcome you are logeed in successfully!!", Toast.LENGTH_SHORT).show ();
             }
         });
 
-        textView.setOnLongClickListener (new View.OnLongClickListener () {
+        forget_password.setOnLongClickListener (new View.OnLongClickListener () {
             @Override
             public boolean onLongClick(View v) {
                 Intent intent = new Intent (getApplicationContext (),ForgotPassword.class);
