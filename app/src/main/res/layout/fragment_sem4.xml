@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_1"
+        android:layout_width="393dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="18dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        tools:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/elect_1"
+            android:layout_width="match_parent"
+            android:layout_height="117dp"
+            android:layout_alignStart="@+id/card_1"
+            android:paddingStart="32dp"
+            android:text="TextView" />
+
+        <CheckBox
+            android:id="@+id/checkBox_e1_sem4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/card_1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="18dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        tools:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/elect_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="32dp"
+            android:text="TextView" />
+
+        <CheckBox
+            android:id="@+id/checkBox_e2_sem4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright" />
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/next_Sem_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="134dp"
+        android:layout_marginEnd="153dp"
+        android:text="Next" />
+
+
+</RelativeLayout>

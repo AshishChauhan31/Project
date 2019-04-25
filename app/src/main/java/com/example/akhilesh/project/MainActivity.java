@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful ()){
                     Toast.makeText (MainActivity.this,"Login success",Toast.LENGTH_LONG).show ();
-                    Intent subjectintent = new Intent (getApplicationContext (),SubjectChoice.class);
+                    Intent subjectintent = new Intent (getApplicationContext (),SubjectChoice2.class);
                     startActivity (subjectintent);
                 }else{
                     Toast.makeText (MainActivity.this ,task.getException ().getMessage (),Toast.LENGTH_SHORT).show();
