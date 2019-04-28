@@ -1,6 +1,10 @@
 package com.example.akhilesh.project;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,11 +44,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = (EditText) findViewById (R.id.pass);
         findViewById (R.id.loginButton).setOnClickListener (this);
         forget_password = findViewById (R.id.Forget_password);
+
+        forget_password.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void login(){
+
             String inputemail = email.getText ().toString ().trim ();
             final String inputpassword = password.getText ().toString ();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences (this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("Useremail",inputemail);
+            editor.apply();
+
 
             if(!Patterns.EMAIL_ADDRESS.matcher (inputemail).matches ()){
                 email.setError ("Please enter Correct Email Address");
@@ -59,12 +77,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth.signInWithEmailAndPassword (inputemail,inputpassword).addOnCompleteListener (new OnCompleteListener<AuthResult> () {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                final ProgressDialog dialog = new ProgressDialog (MainActivity.this);
+                dialog.setTitle ("Logging In");
+                dialog.setMessage ("Please wait");
+                dialog.show ();
                 if(task.isSuccessful ()){
                     Toast.makeText (MainActivity.this,"Login success",Toast.LENGTH_LONG).show ();
+                    dialog.dismiss ();
                     Intent subjectintent = new Intent (getApplicationContext (),SubjectChoice2.class);
                     startActivity (subjectintent);
                 }else{
                     Toast.makeText (MainActivity.this ,task.getException ().getMessage (),Toast.LENGTH_SHORT).show();
+                    dialog.dismiss ();
                 }
             }
         });
@@ -76,5 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+
 
 }

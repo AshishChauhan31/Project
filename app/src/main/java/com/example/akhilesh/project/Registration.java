@@ -1,5 +1,6 @@
 package com.example.akhilesh.project;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -103,7 +104,10 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 }
 
 
-            progressBar.setVisibility (View.VISIBLE);
+                final ProgressDialog dialog = new ProgressDialog (Registration.this);
+                dialog.setTitle ("Registering User");
+                dialog.setMessage ("Please wait");
+                dialog.show ();
                 mAuth.createUserWithEmailAndPassword (email,password).addOnCompleteListener (new OnCompleteListener<AuthResult> () {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -119,6 +123,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful ()){
                                         Toast.makeText (Registration.this, "Registration Successful", Toast.LENGTH_SHORT).show ();
+                                        dialog.dismiss ();
                                         Intent intent = new Intent (getApplicationContext (), MainActivity.class);
                                         startActivity (intent);
                                     }
@@ -128,7 +133,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                         }else{
                             Toast.makeText (Registration.this,task.getException ().getMessage (), Toast.LENGTH_SHORT).show ();
-
+                            dialog.dismiss ();
                         }
 
                     }
