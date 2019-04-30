@@ -34,9 +34,9 @@ public class Submission extends AppCompatActivity {
 
         sub = findViewById (R.id.tv_Subjects);
         email = findViewById (R.id.tv_Email);
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String value = preferences.getString("Useremail", "defaultValue");
-        System.out.println (value);
         email.setText (value);
 
         Intent intent = getIntent ();
@@ -59,6 +59,8 @@ public class Submission extends AppCompatActivity {
         private void sendMessage (String s1,String s2) {
             final String _1st = s1;
             final String _2nd = s2;
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            final String value1 = preferences.getString("Useremail", "defaultValue");
             final ProgressDialog dialog = new ProgressDialog (Submission.this);
             dialog.setTitle ("Sending Email");
             dialog.setMessage ("Please wait");
@@ -67,11 +69,11 @@ public class Submission extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        GMailSender sender = new GMailSender ("akhilesh.chauhan@auw.co.in", "Aksh@1234");
-                        sender.sendMail ("This is Subject",
-                                "This is subject choice 1 "+_1st+"\n"+"This is subject choice 2 "+_2nd,
+                        GMailSender sender = new GMailSender ("projectsubjectify@gmail.com", "Shivam123");
+                        sender.sendMail ("Subject Chosen by user " +value1,
+                                "This is subject choice 1 : "+_1st+"\n"+"This is subject choice 2 :"+_2nd,
                                 "Akhilesh",
-                                "Chauhan124ashish@gmail.com");
+                                "Chauhan124ashish@gmail.com,"+value1);
                         dialog.dismiss ();
                     } catch (Exception e) {
                         Log.e ("mylog", "Error: " + e.getMessage ());
